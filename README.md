@@ -10,3 +10,7 @@ Devon – Hardware Leader
 George  - Hardware design team member/ supervisor
 Simon – Software Development Leader
 Dylan – Software testing and documention
+
+<md-checkbox ng-model="isChecked" aria-label="Finished?">
+  Finished ?
+</md-checkbox>
