@@ -19,7 +19,7 @@ AVC Progress doc: https://docs.google.com/document/d/14aNSWX0IBjtzml0O7ATvRDF37P
 
 Week 2:
 - [ ] Make the robot move
-- [ ] Finalise the robots the design
+- [ ] Finalise the robots design
 - [ ] Come to the lab on Thursday at 3 for another sesh
 
 Week 3:
