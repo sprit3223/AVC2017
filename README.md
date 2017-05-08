@@ -12,5 +12,8 @@ George  - Hardware design team member/ supervisor
 Simon – Software Development Leader
 Dylan – Software testing and documention
 
+Checkboxes - Edit code and put an 'x' in the square brackets and mark your name
+ie [x] Jack is the man 
+
 Week 2:
 - [x] Make the robot move
