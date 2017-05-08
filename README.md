@@ -1,4 +1,5 @@
-# AVC2017
+AVC2017
+
 Team Name: Fantastic Four
 Team members: Jack, Devon, George, Simon, Dylan
 Communication tool: Facebook
@@ -11,6 +12,5 @@ George  - Hardware design team member/ supervisor
 Simon – Software Development Leader
 Dylan – Software testing and documention
 
-<md-checkbox ng-model="isChecked" aria-label="Finished?">
-  Finished ?
-</md-checkbox>
+Week 2:
+- [] Make the robot move
