@@ -13,4 +13,4 @@ Simon – Software Development Leader
 Dylan – Software testing and documention
 
 Week 2:
-- [ ] Make the robot move
+- [x] Make the robot move
