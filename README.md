@@ -18,9 +18,10 @@ Checkboxes - Edit code and put an 'x' in the square brackets and mark your name.
 AVC Progress doc: https://docs.google.com/document/d/14aNSWX0IBjtzml0O7ATvRDF37P-kBB2iCOw2ADhP1yo/edit?usp=sharing
 
 Week 2:
-- [ ] Make the robot move
+- [x] Make the robot move
 - [ ] Finalise the robots design
-- [ ] Come to the lab on Thursday at 3 for another sesh
+- [ ] Give Quadrant 2 a go
+- [x] Come to the lab on Thursday at 3 for another sesh
 
 Week 3:
 - [ ] Complete Quadrant 1
