@@ -1,0 +1,32 @@
+void Q2(){
+    // char pix =(row, col, color)
+    take_picture();
+    char pixels[160] = {};
+    for(int i=0; i<160; i++){
+        pixels[i] = get_pixel(120, i*2, 3);
+    }
+
+    int err = 0;
+    int counter = 0;
+    for(int i=0; i < 160; i++){
+        if(pixles[i] > 127){
+            err += (i - 160);
+            counter++;
+        }
+    }
+
+    if(counter > 0){
+        double avgErr = err / counter;
+    } else{
+        goBack(); //still to do
+    }
+    
+}
+
+void move(){
+    int motor1;
+    int motor2;
+    
+    motor1 = 80 + avgErr * scale;
+    motor2 = 80 + avgErr * scale; // make one negative
+}
