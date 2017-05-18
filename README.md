@@ -19,15 +19,15 @@ AVC Progress doc: https://docs.google.com/document/d/14aNSWX0IBjtzml0O7ATvRDF37P
 
 Week 2:
 - [x] Make the robot move
-- [ ] Finalise the robots design
-- [ ] Give Quadrant 2 a go
+- [x] Finalise the robots design
+- [x] Give Quadrant 2 a go
 - [x] Come to the lab on Thursday at 3 for another sesh
 
 Week 3:
-- [ ] Complete Quadrant 1
+- [x] Complete Quadrant 1 - just need to figure out the gate
 
 Week 4:
-- [ ] Complete Quadrant 2
+- [x] Complete Quadrant 2
 
 Week 5:
 - [ ] Complete Quadrant 3
