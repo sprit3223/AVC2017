@@ -27,13 +27,16 @@ double Q3(){
     }
     
     double reaction;
-    double avgErr = err / bottomCounter;
+    double avgErr;
+    if (bottomCounter > 0){
+        avgErr = err / bottomCounter;
+    }
     
     if (topCounter == 0 && bottomCounter == 0){
         reaction = 100;                                 //do a 180
-    } else if (avgErr <= -35){                          //may need to tweak for line going left and right
+    } else if (avgErr <= -30){                         
         reaction = 101;                                 //turn left 90
-    } else if (avgErr >= 35 && topCounter == 0){
+    } else if (avgErr >= 30 && topCounter == 0){
         reaction = 102;                                 //turn right 90
     } else{
         if (err == 0){                                       // go straight and return err to follow line
@@ -56,22 +59,28 @@ void main(){
     double turn = Q3();
     sleep1(0, 100000);
     
-    while (____________){                     //until it finds white line or finds first wall of maze
+    while (turn != 103){                     //until it finds white line or finds first wall of maze (temp atm)
         turn = Q3();
         
         if (turn == 100){
-            //do a 180
+            set_motor(1, 30);
+            set_motor(2, 100);
+            sleep1(0, 900000);
         
         } else if (turn == 101){
-            //turn left 90
+            set_motor(1, 100);
+            set_motor(2, 30);
+            sleep1(0, 450000);
         
         } else if (turn == 102){
-            // turn right 90
+             set_motor(1, 30);
+            set_motor(2, 100);
+            sleep1(0, 450000);
         
         } else{
-            double scale = 0.2;                     //need to adjust scale
-            motor1 = 30 - (int) (turn * scale);
-            motor2 = 30 + (int) (turn * scale);
+            double scale = 0.25;                    
+            motor1 = 50 - (int) (turn * scale);
+            motor2 = 50 + (int) (turn * scale);
 
             set_motor(1, motor1);
             set_motor(2, motor2);
@@ -83,8 +92,3 @@ void main(){
 }
     
 
-
-
-
-
-}
