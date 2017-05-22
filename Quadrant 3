@@ -57,35 +57,35 @@ void main(){
     int motor2;
     
     double turn = Q3();
-    sleep1(0, 100000);
+    sleep1(0, 50000);
     
     while (turn != 103){                     //until it finds white line or finds first wall of maze (temp atm)
         turn = Q3();
         
         if (turn == 100){
-            set_motor(1, 30);
-            set_motor(2, 100);
-            sleep1(0, 900000);
+            set_motor(1, 100);     //turn 180
+            set_motor(2, -100);
+            sleep1(0, 600000);
         
         } else if (turn == 101){
-            set_motor(1, 100);
+            set_motor(1, 100);      //turn left
             set_motor(2, 30);
-            sleep1(0, 450000);
+            sleep1(0, 550000);
         
         } else if (turn == 102){
-             set_motor(1, 30);
+             set_motor(1, 30);      //turn right
             set_motor(2, 100);
-            sleep1(0, 450000);
+            sleep1(0, 900000);   
         
         } else{
             double scale = 0.25;                    
-            motor1 = 50 - (int) (turn * scale);
-            motor2 = 50 + (int) (turn * scale);
+            motor1 = 40 - (int) (turn * scale);
+            motor2 = 40 + (int) (turn * scale);
 
             set_motor(1, motor1);
             set_motor(2, motor2);
 
-            sleep1(0, 100000);
+            sleep1(0, 50000);
         
         }
     }
