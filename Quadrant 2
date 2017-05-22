@@ -1,5 +1,36 @@
-void Q2(){
-    // char pix =(row, col, color)
+#include "E101.h"
+#include <stdio.h>
+
+
+int gate (){
+
+     // This sets up the RPi hardware and ensures
+     // everything is working correctly
+	sleep1(0,500000);
+     
+    //connects to server with the ip address
+    char ip[24] = "130.195.6.196";
+	connect_to_server(ip, 1024);
+	sleep1(0,500000);
+
+	char message[24] = "Please";
+	send_to_server(message);
+	sleep1(0,500000);
+	
+	//receives password from the connected server
+	char password[24];
+	receive_from_server(password);
+	sleep1(0,500000);
+
+	//sends the password to the server to open the gate
+	send_to_server(password);
+	sleep1(0,500000);
+
+	return 0;
+}
+
+
+double Q2(){
     take_picture();
     char pixels[160] = {};
     for(int i=0; i<160; i++){
@@ -9,24 +40,65 @@ void Q2(){
     int err = 0;
     int counter = 0;
     for(int i=0; i < 160; i++){
-        if(pixles[i] > 127){
-            err += (i - 160);
+        if(pixels[i] > 127){
+            err += (i - 80);
             counter++;
         }
     }
-
-    if(counter > 0){
-        double avgErr = err / counter;
-    } else{
-        goBack(); //still to do
-    }
     
+    double avgErr;
+    
+    if (counter == 0){
+        avgErr = -100;
+    } else if (counter == 160){
+        avgErr = 100;
+    } else{
+        if (err == 0){                           // check that err != 0
+            avgErr = 0;
+        } else {
+            avgErr = err / counter;
+        }
+    }
+
+    return avgErr;
 }
 
-void move(){
+int main(){
+    init();
+    
+    gate();
+    
+    sleep1(1, 0);
+    
     int motor1;
     int motor2;
     
-    motor1 = 80 + avgErr * scale;
-    motor2 = 80 + avgErr * scale; // make one negative
+    double turn = Q2();
+    
+    sleep1(0, 100000);
+    
+    while (turn != 100){           
+    
+        turn = Q2();
+        
+        if (turn == -100){
+            set_motor(1, -50);
+            set_motor(2, -50);
+            
+            sleep1(0, 100000);
+        } else {
+            double scale = 0.25;                  //need to adjust scale
+            motor1 = 50 - (int) (turn * scale);
+            motor2 = 50 + (int) (turn * scale);
+
+            set_motor(1, motor1);
+            set_motor(2, motor2);
+
+            sleep1(0, 100000);
+        }
+    }
+    
+    set_motor(1, 0);
+    set_motor(2, 0);
+    return 0;
 }
