@@ -1,0 +1,111 @@
+#include "E101.h"
+#include <stdio.h>
+
+double Q3(){
+    take_picture();
+    char horiPixels[160] = {};
+    for (int i=0; i<160; i++){
+        horiPixels[i] = get_pixel(120, i*2, 3);
+    }
+    
+    char leftPixels[120] = {};
+    for (int i=0; i<120; i++){
+        leftPixels[i] = get_pixel(i*2, 10, 3);
+    }
+    
+    char rightPixels[120] = {};
+    for (int i=0; i<120; i++){
+        rightPixels[i] = get_pixel(i*2, 310, 3);
+    }
+    
+    int error = 0, horiCounter = 0, leftCounter = 0, rightCounter = 0;
+    for (int i=0; i < 160; i++){
+        if (horiPixels[i] > 127){
+            error += i - 80;
+            horiCounter++;
+        }
+    }
+    
+    for (int i=0; i < 120; i++){
+        if (leftPixels[i] > 127){
+            leftCounter++;
+        }
+    }
+    for (int i=0; i < 160; i++){
+        if (rightPixels[i] > 127){
+            rightCounter++;
+        }
+    }
+    
+    double reaction, avgError;
+    if (horiCounter > 0){
+        avgError = error / horiCounter;
+    }
+    
+    if (horiCounter == 0){
+        reaction = 100;                                 //do a 180
+    } else if (leftCounter > 0){                         
+        reaction = 101;                                 //turn left 90
+    } else if (rightCounter > 0 && leftCounter == 0){
+        reaction = 102;                                 //turn right 90
+    } else{
+        if (err == 0){                                       // go straight
+            reaction = 0;
+        } else {
+            reaction = avgError;
+        }
+    }
+
+    return reaction;
+    
+}
+
+void main(){
+    init();
+    
+    int motor1;
+    int motor2;
+    
+    double turn = Q3();
+    sleep1(0, 100000);
+    
+    while (turn != 103){                     //until it finds white line or finds first wall of maze (temp atm)
+        turn = Q3();
+        
+        if (turn == 100){
+            set_motor(1, 100);     //turn 180
+            set_motor(2, -100);
+            sleep1(0, 600000);
+            set_motor(1, 0);
+            set_motor(2, 0);
+            sleep1(0, 500000);
+        
+        } else if (turn == 101){
+            set_motor(1, 100);      //turn left
+            set_motor(2, 30);
+            sleep1(0, 550000);
+            set_motor(1, 0);
+            set_motor(2, 0);
+            sleep1(0, 500000);
+        
+        } else if (turn == 102){
+             set_motor(1, 30);      //turn right
+            set_motor(2, 100);
+            sleep1(0, 900000); 
+            set_motor(1, 0);
+            set_motor(2, 0);
+            sleep1(0, 500000);
+        
+        } else{
+            double scale = 0.25;                    
+            motor1 = 40 - (int) (turn * scale);
+            motor2 = 40 + (int) (turn * scale);
+
+            set_motor(1, motor1);
+            set_motor(2, motor2);
+
+            sleep1(0, 100000);
+        
+        }
+    }
+}
